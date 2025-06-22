@@ -1,4 +1,4 @@
-// BaseNode.js - Node Abstraction
+// BaseNode.js
 import React from 'react';
 import { Handle, Position } from 'reactflow';
 
@@ -47,7 +47,7 @@ export const BaseNode = ({
         lineHeight: '1.4'
     };
 
-    // Calculate handle positions for multiple inputs/outputs
+
     const getHandleStyle = (index, total, isInput = true) => {
         if (total === 1) return { top: '50%' };
         const spacing = 80 / (total + 1);
@@ -76,7 +76,7 @@ export const BaseNode = ({
                 />
             ))}
 
-            {/* Node Content */}
+
             <div style={titleStyle}>{title}</div>
 
             {content && (
@@ -87,7 +87,6 @@ export const BaseNode = ({
 
             {children}
 
-            {/* Output Handles */}
             {outputs.map((output, index) => (
                 <Handle
                     key={`output-${index}`}

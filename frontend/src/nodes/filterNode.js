@@ -1,7 +1,6 @@
-
-// 2. Filter Node - Filters data based on conditions
 import React, { useState } from 'react';
 import { BaseNode } from './BaseNode';
+import './nodeStyles.css';
 
 export const FilterNode = ({ id, data }) => {
     const [condition, setCondition] = useState(data?.condition || 'contains');
@@ -13,15 +12,6 @@ export const FilterNode = ({ id, data }) => {
         { id: 'rejected', label: 'Rejected' }
     ];
 
-    const inputStyle = {
-        width: '100%',
-        padding: '4px 8px',
-        border: '1px solid #d1d5db',
-        borderRadius: '4px',
-        fontSize: '12px',
-        marginTop: '4px'
-    };
-
     return (
         <BaseNode
             id={id}
@@ -29,20 +19,21 @@ export const FilterNode = ({ id, data }) => {
             title="Filter"
             inputs={inputs}
             outputs={outputs}
-            height={120}
+            height={200}
             className="filter-node"
             style={{
                 background: 'linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%)',
-                borderColor: '#ec4899'
+                borderColor: '#ec4899',
+                borderRadius: '10px'
             }}
         >
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                <label style={{ fontSize: '12px', fontWeight: '500' }}>
-                    Condition:
+            <div className="node-container">
+                <label className="node-label">
+                    Condition
                     <select
                         value={condition}
                         onChange={(e) => setCondition(e.target.value)}
-                        style={inputStyle}
+                        className="node-select"
                     >
                         <option value="contains">Contains</option>
                         <option value="equals">Equals</option>
@@ -50,13 +41,17 @@ export const FilterNode = ({ id, data }) => {
                         <option value="less">Less Than</option>
                     </select>
                 </label>
-                <input
-                    type="text"
-                    placeholder="Filter value"
-                    value={filterValue}
-                    onChange={(e) => setFilterValue(e.target.value)}
-                    style={inputStyle}
-                />
+
+                <label className="node-label">
+                    Filter Value
+                    <input
+                        type="text"
+                        placeholder="Enter value..."
+                        value={filterValue}
+                        onChange={(e) => setFilterValue(e.target.value)}
+                        className="node-input"
+                    />
+                </label>
             </div>
         </BaseNode>
     );

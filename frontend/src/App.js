@@ -1,23 +1,5 @@
-// // App.js
-// import { PipelineToolbar } from './toolbar';
-// import { PipelineUI } from './ui';
-// import { SubmitButton } from './submit';
+// App.js
 
-// function App() {
-//   return (
-//     <div>
-//       <PipelineToolbar />
-//       <PipelineUI />
-//       <SubmitButton />
-//     </div>
-//   );
-// }
-
-// export default App;
-
-
-
-// Updated App.js with improved styling
 import React from 'react';
 import { PipelineToolbar } from './toolbar';
 import { PipelineUI } from './ui';
@@ -27,9 +9,16 @@ import './App.css';
 function App() {
   return (
     <div className="app-container">
-      <PipelineToolbar />
-      <PipelineUI />
-      <SubmitButton />
+      <div className="app-layout">
+        <div className="toolbar-container">
+          <PipelineToolbar />
+        </div>
+
+        <div className="content-container">
+          <PipelineUI />
+          <SubmitButton />
+        </div>
+      </div>
     </div>
   );
 }

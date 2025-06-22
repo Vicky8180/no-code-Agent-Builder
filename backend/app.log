@@ -1,0 +1,8 @@
+2025-06-22 16:41:33,233 - main - INFO - Processing pipeline with 2 nodes and 2 edges
+2025-06-22 16:41:33,235 - main - INFO - Pipeline analysis completed: DAG=False, Cycles=True, Components=1
+2025-06-22 16:41:53,885 - main - INFO - Processing pipeline with 2 nodes and 0 edges
+2025-06-22 16:41:53,885 - main - INFO - Pipeline analysis completed: DAG=True, Cycles=False, Components=2
+2025-06-22 16:42:10,923 - main - INFO - Processing pipeline with 3 nodes and 0 edges
+2025-06-22 16:42:10,923 - main - INFO - Pipeline analysis completed: DAG=True, Cycles=False, Components=3
+2025-06-22 16:42:39,319 - main - INFO - Processing pipeline with 3 nodes and 2 edges
+2025-06-22 16:42:39,320 - main - INFO - Pipeline analysis completed: DAG=True, Cycles=False, Components=1

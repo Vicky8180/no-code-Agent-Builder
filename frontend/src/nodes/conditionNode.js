@@ -1,6 +1,6 @@
-// 4. Condition Node - Conditional logic branching
 import React, { useState } from 'react';
 import { BaseNode } from './BaseNode';
+import './nodeStyles.css';
 
 export const ConditionNode = ({ id, data }) => {
     const [operator, setOperator] = useState(data?.operator || '==');
@@ -15,15 +15,6 @@ export const ConditionNode = ({ id, data }) => {
         { id: 'false', label: 'False' }
     ];
 
-    const selectStyle = {
-        width: '100%',
-        padding: '4px 8px',
-        border: '1px solid #d1d5db',
-        borderRadius: '4px',
-        fontSize: '12px',
-        backgroundColor: '#ffffff'
-    };
-
     return (
         <BaseNode
             id={id}
@@ -33,17 +24,18 @@ export const ConditionNode = ({ id, data }) => {
             outputs={outputs}
             className="condition-node"
             style={{
-                background: 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)',
-                borderColor: '#22c55e'
+                background: 'linear-gradient(135deg, #e8fef3 0%, #d1fae5 100%)',
+                borderColor: '#22c55e',
+                borderRadius: '10px'
             }}
         >
-            <div>
-                <label style={{ fontSize: '12px', fontWeight: '500' }}>
-                    Operator:
+            <div className="node-container">
+                <label className="node-label">
+                    Operator
                     <select
                         value={operator}
                         onChange={(e) => setOperator(e.target.value)}
-                        style={selectStyle}
+                        className="node-select"
                     >
                         <option value="==">==(equals)</option>
                         <option value="!=">&ne;(not equals)</option>

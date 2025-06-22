@@ -1,8 +1,6 @@
-// Five New Demo Nodes showcasing the BaseNode abstraction
-
-// 1. Math Node - Performs mathematical operations
 import React, { useState } from 'react';
 import { BaseNode } from './BaseNode';
+import './nodeStyles.css';
 
 export const MathNode = ({ id, data }) => {
     const [operation, setOperation] = useState(data?.operation || 'add');
@@ -14,15 +12,6 @@ export const MathNode = ({ id, data }) => {
 
     const outputs = [{ id: 'result', label: 'Result' }];
 
-    const selectStyle = {
-        width: '100%',
-        padding: '4px 8px',
-        border: '1px solid #d1d5db',
-        borderRadius: '4px',
-        fontSize: '12px',
-        backgroundColor: '#ffffff'
-    };
-
     return (
         <BaseNode
             id={id}
@@ -33,16 +22,17 @@ export const MathNode = ({ id, data }) => {
             className="math-node"
             style={{
                 background: 'linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%)',
-                borderColor: '#6366f1'
+                borderColor: '#6366f1',
+                borderRadius: '10px'
             }}
         >
-            <div>
-                <label style={{ fontSize: '12px', fontWeight: '500' }}>
-                    Operation:
+            <div className="node-container">
+                <label className="node-label">
+                    Operation
                     <select
+                        className="node-select"
                         value={operation}
                         onChange={(e) => setOperation(e.target.value)}
-                        style={selectStyle}
                     >
                         <option value="add">Add (+)</option>
                         <option value="subtract">Subtract (-)</option>

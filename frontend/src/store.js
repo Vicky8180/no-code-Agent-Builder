@@ -1,62 +1,5 @@
-// // store.js
 
-// import { create } from "zustand";
-// import {
-//     addEdge,
-//     applyNodeChanges,
-//     applyEdgeChanges,
-//     MarkerType,
-//   } from 'reactflow';
-
-// export const useStore = create((set, get) => ({
-//     nodes: [],
-//     edges: [],
-//     getNodeID: (type) => {
-//         const newIDs = {...get().nodeIDs};
-//         if (newIDs[type] === undefined) {
-//             newIDs[type] = 0;
-//         }
-//         newIDs[type] += 1;
-//         set({nodeIDs: newIDs});
-//         return `${type}-${newIDs[type]}`;
-//     },
-//     addNode: (node) => {
-//         set({
-//             nodes: [...get().nodes, node]
-//         });
-//     },
-//     onNodesChange: (changes) => {
-//       set({
-//         nodes: applyNodeChanges(changes, get().nodes),
-//       });
-//     },
-//     onEdgesChange: (changes) => {
-//       set({
-//         edges: applyEdgeChanges(changes, get().edges),
-//       });
-//     },
-//     onConnect: (connection) => {
-//       set({
-//         edges: addEdge({...connection, type: 'smoothstep', animated: true, markerEnd: {type: MarkerType.Arrow, height: '20px', width: '20px'}}, get().edges),
-//       });
-//     },
-//     updateNodeField: (nodeId, fieldName, fieldValue) => {
-//       set({
-//         nodes: get().nodes.map((node) => {
-//           if (node.id === nodeId) {
-//             node.data = { ...node.data, [fieldName]: fieldValue };
-//           }
-
-//           return node;
-//         }),
-//       });
-//     },
-//   }));
-
-
-
-
-// Updated store.js with nodeIDs initialization
+// store.js
 import { create } from "zustand";
 import {
   addEdge,
@@ -68,7 +11,8 @@ import {
 export const useStore = create((set, get) => ({
   nodes: [],
   edges: [],
-  nodeIDs: {}, // Initialize nodeIDs object
+  nodeIDs: {},
+
   getNodeID: (type) => {
     const newIDs = { ...get().nodeIDs };
     if (newIDs[type] === undefined) {
@@ -78,44 +22,67 @@ export const useStore = create((set, get) => ({
     set({ nodeIDs: newIDs });
     return `${type}-${newIDs[type]}`;
   },
+
   addNode: (node) => {
     set({
       nodes: [...get().nodes, node]
     });
   },
+
   onNodesChange: (changes) => {
     set({
       nodes: applyNodeChanges(changes, get().nodes),
     });
   },
+
   onEdgesChange: (changes) => {
     set({
       edges: applyEdgeChanges(changes, get().edges),
     });
   },
+
   onConnect: (connection) => {
     set({
       edges: addEdge({
         ...connection,
         type: 'smoothstep',
         animated: true,
-        style: { strokeWidth: 2, stroke: '#3b82f6' },
         markerEnd: {
-          type: MarkerType.ArrowClosed,
-          color: '#3b82f6'
+          type: MarkerType.Arrow,
+          height: '20px',
+          width: '20px'
         }
       }, get().edges),
     });
   },
+
   updateNodeField: (nodeId, fieldName, fieldValue) => {
     set({
       nodes: get().nodes.map((node) => {
         if (node.id === nodeId) {
           node.data = { ...node.data, [fieldName]: fieldValue };
         }
-
         return node;
       }),
     });
   },
+
+
+  clearPipeline: () => {
+    set({
+      nodes: [],
+      edges: [],
+      nodeIDs: {}
+    });
+  },
+
+
+  getPipelineStats: () => {
+    const state = get();
+    return {
+      nodeCount: state.nodes.length,
+      edgeCount: state.edges.length,
+      nodeTypes: [...new Set(state.nodes.map(node => node.type))]
+    };
+  }
 }));
